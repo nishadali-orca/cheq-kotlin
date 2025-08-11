@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.cheq.sastandroid'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.cheq.sastandroid"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'  
+    }
+}
+
+dependencies {   
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+
+    // CSA testing dependencies - strategically vulnerable versions
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'        // Known vulnerabilities
+    implementation 'com.google.code.gson:gson:2.8.5'          // Older version
+    implementation 'org.apache.commons:commons-lang3:3.8.1'   // Potential issues
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8' // Older Jackson
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.60'     // Crypto library
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'    // HTTP client
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'               // JWT handling
+    implementation 'org.yaml:snakeyaml:1.24'                  // YAML parsing
+    implementation 'com.thoughtworks.xstream:xstream:1.4.11'  // XML serialization
+    implementation 'commons-collections:commons-collections:3.2.1' // Deserialization risks
+}
